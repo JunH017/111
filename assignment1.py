@@ -1,20 +1,27 @@
-N=int(input(''))
-A=[None]*N
-for i in range(0,N):
-    A[i]=int(input(' '))
-M=int(input(''))
-B=[None]*M
-C=[None]*M
-for i in range(0,M):
-    B[i]=int(input(' '))
+N = int(input())
+N_list = list(map(int, input().split(' ')))
+N_list.sort()
+
+M = int(input())
+find=list(map(int, input().split(' ')))
 
 
-for i in range(0,M):
-    for j in range(0,N):
-        if(A[j]==B[i]):
-            C[i]=1
-    if(C[i]!=1):
-        C[i]=0
-            
-for i in range(0,M):
-    print(C[i])
+def binary(x):
+    start=0
+    end=N-1
+
+    while start<=end:
+        key=(start+end)//2
+        if N_list[key]==x:
+            return True
+        if x<N_list[key]:
+            end = key-1
+        elif x>N_list[key]:
+            start=key+1
+
+
+for i in range(M):
+    if binary(find[i]):
+        print(1)
+    else:
+        print(0)
